@@ -1,0 +1,6 @@
+@RestAndGrpcApp_HostAddress = http://localhost:5217
+
+GET {{RestAndGrpcApp_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
