@@ -27,6 +27,8 @@ namespace RestAndGrpcApp
             services.AddControllers();
 
             // Register the Swagger generator, defining 1 or more Swagger documents
+            services.AddGrpc().AddJsonTranscoding();
+            services.AddGrpcSwagger();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo
@@ -43,9 +45,6 @@ namespace RestAndGrpcApp
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);
             });
-
-            services.AddGrpc().AddJsonTranscoding();
-            services.AddGrpcSwagger();
 
             // Registers the service with a scoped lifetime
             services.AddScoped<IWeatherForecastService, WeatherForecastService>();
