@@ -1,4 +1,6 @@
 
+using RestAndGrpcApp.Services;
+
 namespace RestAndGrpcApp
 {
     public class Program
@@ -13,6 +15,8 @@ namespace RestAndGrpcApp
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddTransient<IWeatherForecastService, WeatherForecastService>();
 
             var app = builder.Build();
 
