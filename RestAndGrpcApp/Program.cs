@@ -1,43 +1,35 @@
+using Microsoft.AspNetCore.Server.Kestrel.Core;
+using Microsoft.OpenApi.Models;
 using RestAndGrpcApp.Services;
 
 namespace RestAndGrpcApp
 {
     public class Program
     {
-        public static void Main(string[] args)
-        {
-            var builder = WebApplication.CreateBuilder(args);
-
-            builder.Services.AddGrpc().AddJsonTranscoding();
-            builder.Services.AddGrpcSwagger();
-
-            // Add services to the container.
-            builder.Services.AddTransient<IWeatherForecastService, WeatherForecastService>();
-
-            builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-            builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
-            
-            var app = builder.Build();
-
-            // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
-            {
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "RestAndGrpcApp v1"));
-            }
-
-            app.MapGrpcService<WeatherForecastGrpcServiceImpl>();
-
-            app.UseHttpsRedirection();
-
-            app.UseAuthorization();
+        /// <summary>
+        /// The entry point of the application
+        /// </summary>
+        /// <param name="args"></param>
+        /// <returns></returns>
+        private static async Task Main(string[] args) =>
+            await CreateHostBuilder(args).Build().RunAsync();
 
 
-            app.MapControllers();
+        /// <summary>
+        /// Create and configure a builder object.
+        /// </summary>
+        /// <param name="args"></param>
+        /// <returns></returns>
+        private static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder => webBuilder.ConfigureKestrel(options =>
+                {
+                    options.ListenAnyIP(4999, listenOptions =>
+                        listenOptions.Protocols = HttpProtocols.Http1);
 
-            app.Run();
-        }
+                    options.ListenAnyIP(5000, listenOptions =>
+                        listenOptions.Protocols = HttpProtocols.Http2);
+                })
+                    .UseStartup<Startup>());
     }
 }
