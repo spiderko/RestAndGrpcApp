@@ -7,6 +7,9 @@
     <InvariantGlobalization>true</InvariantGlobalization>
   </PropertyGroup>
 
+	<ItemGroup>
+		<None Remove="Protos\weatherForecast.proto" />
+	</ItemGroup>
   <ItemGroup>
     <PackageReference Include="Google.Api.CommonProtos" Version="2.15.0" />
     <PackageReference Include="Google.Protobuf" Version="3.27.1" />
@@ -15,7 +18,9 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Grpc.JsonTranscoding" Version="8.0.6" />
+    <PackageReference Include="Microsoft.AspNetCore.Grpc.Swagger" Version="0.8.6" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
   <ItemGroup>
 	<Protobuf Include="Protos\weatherForecast.proto" GrpcServices="Server" />

@@ -1,21 +1,31 @@
-﻿namespace RestAndGrpcApp.Services
+﻿using Google.Protobuf.WellKnownTypes;
+using RestAndGrpcApp.Protos;
+
+namespace RestAndGrpcApp.Services
 {
     public class WeatherForecastService : IWeatherForecastService
     {
-        private static readonly string[] Summaries = new[]
-        {
+        private static readonly string[] Summaries =
+        [
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
+        ];
 
-        public IEnumerable<WeatherForecast> Get()
+        public WeatherForecasts Get()
         {
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+            WeatherForecasts weatherForecasts = new();
+
+            for (int i = 1; i < 5; i++)
             {
-                Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-            })
-            .ToArray();
+                weatherForecasts.Forecasts.Add(new Protos.WeatherForecast()
+                {
+                    Date = Timestamp.FromDateTime(DateTime.UtcNow.AddDays(i)),
+                    TemperatureC = Random.Shared.Next(-20, 55),
+                    Summary = Summaries[Random.Shared.Next(Summaries.Length)]
+                });
+            }
+            
+
+            return weatherForecasts;
         }
     }
 }

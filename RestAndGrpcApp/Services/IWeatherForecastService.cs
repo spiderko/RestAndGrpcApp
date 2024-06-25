@@ -1,8 +1,9 @@
-﻿
+﻿using RestAndGrpcApp.Protos;
+
 namespace RestAndGrpcApp.Services
 {
     public interface IWeatherForecastService
     {
-        IEnumerable<WeatherForecast> Get();
+        WeatherForecasts Get();
     }
 }

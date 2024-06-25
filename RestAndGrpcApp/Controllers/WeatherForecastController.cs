@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using RestAndGrpcApp.Protos;
 using RestAndGrpcApp.Services;
 
 namespace RestAndGrpcApp.Controllers
@@ -11,7 +12,7 @@ namespace RestAndGrpcApp.Controllers
         private readonly ILogger<WeatherForecastController> _logger = logger;
 
         [HttpGet(Name = "GetWeatherForecast")]
-        public IEnumerable<WeatherForecast> Get()
+        public WeatherForecasts Get()
         {
             _logger.LogInformation("Getting weather forecast");
             return _service.Get();
