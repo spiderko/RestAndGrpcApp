@@ -52,4 +52,4 @@ After the application runs, navigate to http://localhost:4999/swagger in your we
 You can also test your gRPC service by expanding "/v1/WeatherForecast" accordion and click on "Try it out" -> "Execute". It should retrun similiar result as above.
 Call in this case is made using HTTP/1.1 protocol.
 
-For the gRPC piece which uses HTTP/2.0 protocol, you can install a gRPC client (i.e. [BloomRPC](https://github.com/uw-labs/bloomrpc)). Import the `weatherForecast.proto` file to the client and enter the server address as `grpc://localhost:5000`.
+For the gRPC piece which uses HTTP/2.0 protocol, you can use Postman (https://www.postman.com/). Create new gRPC request in Postman and import the `weatherForecast.proto` file to the client and enter the server address as `grpc://localhost:5000`.
