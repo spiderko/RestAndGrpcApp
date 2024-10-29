@@ -6,9 +6,9 @@
 
 /* eslint-disable */
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
-import { Empty } from "../google/protobuf/empty";
-import { Timestamp } from "../google/protobuf/timestamp";
-import { StringValue } from "../google/protobuf/wrappers";
+import { Empty } from "./empty";
+import { Timestamp } from "./timestamp";
+import { StringValue } from "./wrappers";
 
 export const protobufPackage = "";
 
