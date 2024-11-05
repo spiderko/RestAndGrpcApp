@@ -13,6 +13,12 @@ service WeatherForecastGrpcService {
 	  get: "/v1/WeatherForecast"
 	};
   };
+
+  rpc GetWeatherForecast(WeatherForecastRequest) returns (WeatherForecast) {
+    option (google.api.http) = {
+	  get: "/v1/WeatherForecast/{date}/{city}"
+	};
+  };
 }
 
 message WeatherForecasts {
@@ -24,4 +30,9 @@ message WeatherForecast {
 	int32 temperatureC = 2;
 	int32 temperatureF = 3;
 	google.protobuf.StringValue summary = 4;
+}
+
+message WeatherForecastRequest {
+	google.protobuf.StringValue date = 1;
+	google.protobuf.StringValue city = 2;
 }

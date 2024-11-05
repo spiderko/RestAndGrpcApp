@@ -12,5 +12,10 @@ namespace RestAndGrpcApp.Services
         {
             return Task.FromResult(_service.Get());
         }
+
+        public override Task<WeatherForecast> GetWeatherForecast(WeatherForecastRequest request, ServerCallContext context)
+        {
+            return Task.FromResult(_service.Get(request.Date, request.City));
+        }
     }
 }
