@@ -1,4 +1,9 @@
+using Grpc.Net.Client.Web;
+using Grpc.Net.Client;
+using Microsoft.AspNetCore.Components;
 using RestAndGrpcApp.Client.Blazor.Components;
+using RestAndGrpcApp.Client.Blazor.Components.Pages;
+using RestAndGrpcApp.Protos;
 
 namespace RestAndGrpcApp.Client.Blazor
 {
@@ -11,6 +16,15 @@ namespace RestAndGrpcApp.Client.Blazor
             // Add services to the container.
             builder.Services.AddRazorComponents()
                 .AddInteractiveServerComponents();
+
+            builder.Services.AddSingleton(services =>
+            {
+                var httpClient = new HttpClient(new GrpcWebHandler(GrpcWebMode.GrpcWeb, new HttpClientHandler()));
+                var baseUri = services.GetRequiredService<NavigationManager>().BaseUri;
+                var channel = GrpcChannel.ForAddress(baseUri, new GrpcChannelOptions { HttpClient = httpClient });
+
+                return new WeatherForecastGrpcService.WeatherForecastGrpcServiceClient(channel);
+            });
 
             var app = builder.Build();
 
