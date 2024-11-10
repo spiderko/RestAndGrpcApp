@@ -1,8 +1,11 @@
 ﻿using Google.Protobuf.WellKnownTypes;
 using RestAndGrpcApp.Protos;
 
-namespace RestAndGrpcApp.Services
+namespace RestAndGrpcApp.Server.Services
 {
+    /// <summary>
+    /// WeatherForecastService
+    /// </summary>
     public class WeatherForecastService : IWeatherForecastService
     {
         private static readonly string[] Summaries =
@@ -10,6 +13,10 @@ namespace RestAndGrpcApp.Services
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         ];
 
+        /// <summary>
+        /// Get method
+        /// </summary>
+        /// <returns>WeatherForecasts</returns>
         public WeatherForecasts Get()
         {
             WeatherForecasts weatherForecasts = new();
@@ -18,11 +25,17 @@ namespace RestAndGrpcApp.Services
             {
                 weatherForecasts.Forecasts.Add(GetWeatherForecast(Timestamp.FromDateTime(DateTime.UtcNow)));
             }
-            
+
 
             return weatherForecasts;
         }
 
+        /// <summary>
+        /// Get method
+        /// </summary>
+        /// <param name="date">The date of requested weather forecast</param>
+        /// <param name="city">The city of requested weather forecast</param>
+        /// <returns>WeatherForecasts</returns>
         public WeatherForecast Get(string date, string city)
         {
             return GetWeatherForecast(GetTimestamp(date), city);

@@ -1,9 +1,14 @@
 using Microsoft.AspNetCore.Mvc;
 using RestAndGrpcApp.Protos;
-using RestAndGrpcApp.Services;
+using RestAndGrpcApp.Server.Services;
 
-namespace RestAndGrpcApp.Controllers
+namespace RestAndGrpcApp.Server.Controllers
 {
+    /// <summary>
+    /// WeatherForecasts REST controller 
+    /// </summary>
+    /// <param name="service"></param>
+    /// <param name="logger"></param>
     [ApiController]
     [Route("[controller]")]
     public class WeatherForecastController(IWeatherForecastService service, ILogger<WeatherForecastController> logger) : ControllerBase

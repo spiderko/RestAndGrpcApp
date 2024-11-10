@@ -1,6 +1,4 @@
 using Microsoft.AspNetCore.Server.Kestrel.Core;
-using Microsoft.OpenApi.Models;
-using RestAndGrpcApp.Services;
 
 namespace RestAndGrpcApp
 {

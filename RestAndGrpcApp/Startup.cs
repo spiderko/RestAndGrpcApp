@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 using Microsoft.OpenApi.Models;
-using RestAndGrpcApp.Services;
+using RestAndGrpcApp.Server.Services;
 
 namespace RestAndGrpcApp
 {
@@ -66,6 +66,7 @@ namespace RestAndGrpcApp
             }
 
             app.UseRouting();
+            app.UseGrpcWeb(new GrpcWebOptions { DefaultEnabled = true });
 
             app.UseEndpoints(endpoints =>
             {

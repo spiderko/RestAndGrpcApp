@@ -1,11 +1,10 @@
-﻿using Google.Protobuf.WellKnownTypes;
-using RestAndGrpcApp.Protos;
+﻿using RestAndGrpcApp.Protos;
 
-namespace RestAndGrpcApp.Services
+namespace RestAndGrpcApp.Server.Services
 {
     public interface IWeatherForecastService
     {
         WeatherForecasts Get();
-        WeatherForecast Get(string date,string city);
+        WeatherForecast Get(string date, string city);
     }
 }
