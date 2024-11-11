@@ -23,7 +23,7 @@ namespace RestAndGrpcApp
         /// <returns></returns>
         public static void ConfigureServices(IServiceCollection services)
         {
-            services.AddRouting(options => options.LowercaseUrls = true);
+            services.AddRouting();
             services.AddControllers();
 
             // Register the Swagger generator, defining 1 or more Swagger documents

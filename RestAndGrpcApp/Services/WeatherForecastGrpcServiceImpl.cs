@@ -24,14 +24,14 @@ namespace RestAndGrpcApp.Server.Services
         }
 
         /// <summary>
-        /// Get WeatherForecasts method
+        /// Get WeatherForecasts method by quantity
         /// </summary>
         /// <param name="request"></param>
         /// <param name="context"></param>
         /// <returns>WeatherForecasts</returns>
-        public override Task<WeatherForecast> GetWeatherForecast(WeatherForecastRequest request, ServerCallContext context)
+        public override Task<WeatherForecasts> GetWeatherForecastsByQty(WeatherForecastRequest request, ServerCallContext context)
         {
-            return Task.FromResult(_service.Get(request.Date, request.City));
+            return Task.FromResult(_service.Get(request.Qty));
         }
     }
 }

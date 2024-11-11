@@ -10,13 +10,13 @@ option csharp_namespace = "RestAndGrpcApp.Protos";
 service WeatherForecastGrpcService {
   rpc GetWeatherForecasts(google.protobuf.Empty) returns (WeatherForecasts) {
     option (google.api.http) = {
-	  get: "/v1/WeatherForecast"
+	  get: "/Grpc/WeatherForecast"
 	};
   };
 
-  rpc GetWeatherForecast(WeatherForecastRequest) returns (WeatherForecast) {
+  rpc GetWeatherForecastsByQty(WeatherForecastRequest) returns (WeatherForecasts) {
     option (google.api.http) = {
-	  get: "/v1/WeatherForecast/{date}/{city}"
+	  get: "/Grpc/WeatherForecast/{qty}"
 	};
   };
 }
@@ -33,6 +33,5 @@ message WeatherForecast {
 }
 
 message WeatherForecastRequest {
-	google.protobuf.StringValue date = 1;
-	google.protobuf.StringValue city = 2;
+	int32 qty = 1;
 }

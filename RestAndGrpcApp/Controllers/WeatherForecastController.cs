@@ -10,17 +10,33 @@ namespace RestAndGrpcApp.Server.Controllers
     /// <param name="service"></param>
     /// <param name="logger"></param>
     [ApiController]
-    [Route("[controller]")]
+    [Route("Rest/[controller]")]
     public class WeatherForecastController(IWeatherForecastService service, ILogger<WeatherForecastController> logger) : ControllerBase
     {
         private readonly IWeatherForecastService _service = service;
         private readonly ILogger<WeatherForecastController> _logger = logger;
 
-        [HttpGet(Name = "GetWeatherForecast")]
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet()]
         public WeatherForecasts Get()
         {
-            _logger.LogInformation("Getting weather forecast");
+            _logger.LogInformation("Getting 5 weather forecasts");
             return _service.Get();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="qty"></param>
+        /// <returns></returns>
+        [HttpGet("{qty}")]
+        public WeatherForecasts GetQty([FromRoute] int qty)
+        {
+            _logger.LogInformation($"Getting {qty} weather forecasts");
+            return _service.Get(qty);
         }
     }
 }
