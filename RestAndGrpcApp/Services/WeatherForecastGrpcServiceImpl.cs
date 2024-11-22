@@ -18,9 +18,9 @@ namespace RestAndGrpcApp.Server.Services
         /// <param name="request"></param>
         /// <param name="context"></param>
         /// <returns>WeatherForecasts</returns>
-        public override Task<WeatherForecasts> GetWeatherForecasts(Empty request, ServerCallContext context)
+        public override Task<GrpcWeatherForecasts> GetWeatherForecasts(Empty request, ServerCallContext context)
         {
-            return Task.FromResult(_service.Get());
+            return Task.FromResult(_service.GetGrpc());
         }
 
         /// <summary>
@@ -29,9 +29,9 @@ namespace RestAndGrpcApp.Server.Services
         /// <param name="request"></param>
         /// <param name="context"></param>
         /// <returns>WeatherForecasts</returns>
-        public override Task<WeatherForecasts> GetWeatherForecastsByQty(WeatherForecastRequest request, ServerCallContext context)
+        public override Task<GrpcWeatherForecasts> GetWeatherForecastsByQty(WeatherForecastRequest request, ServerCallContext context)
         {
-            return Task.FromResult(_service.Get(request.Qty));
+            return Task.FromResult(_service.GetGrpc(request.Qty));
         }
     }
 }

@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using RestAndGrpcApp.Protos;
 using RestAndGrpcApp.Server.Services;
+using RestAndGrpcApp.Shared.Models;
 
 namespace RestAndGrpcApp.Server.Controllers
 {
@@ -24,7 +24,7 @@ namespace RestAndGrpcApp.Server.Controllers
         public WeatherForecasts Get()
         {
             _logger.LogInformation("Getting 5 weather forecasts");
-            return _service.Get();
+            return _service.GetRest();
         }
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace RestAndGrpcApp.Server.Controllers
         public WeatherForecasts GetQty([FromRoute] int qty)
         {
             _logger.LogInformation($"Getting {qty} weather forecasts");
-            return _service.Get(qty);
+            return _service.GetRest(qty);
         }
     }
 }

@@ -25,6 +25,9 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\RestAndGrpcApp.Shared\RestAndGrpcApp.Shared.csproj" />
+  </ItemGroup>
+  <ItemGroup>
 	<Protobuf Include="Protos\weatherForecast.proto" GrpcServices="Server" />
   </ItemGroup>
 </Project>

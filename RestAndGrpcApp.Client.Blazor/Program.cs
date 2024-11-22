@@ -2,6 +2,7 @@ using Grpc.Net.Client.Web;
 using Grpc.Net.Client;
 using RestAndGrpcApp.Client.Blazor.Components;
 using RestAndGrpcApp.Protos;
+using RestAndGrpcApp.Client.Blazor.Clients;
 
 namespace RestAndGrpcApp.Client.Blazor
 {
@@ -15,14 +16,19 @@ namespace RestAndGrpcApp.Client.Blazor
             builder.Services.AddRazorComponents()
                 .AddInteractiveServerComponents();
 
+            // Add GRPC client
             builder.Services.AddSingleton(services =>
             {
                 var httpClient = new HttpClient(new GrpcWebHandler(GrpcWebMode.GrpcWeb, new HttpClientHandler()));
                 var channel = GrpcChannel.ForAddress("http://localhost:5000", new GrpcChannelOptions { HttpClient = httpClient });
                 var result = new WeatherForecastGrpcService.WeatherForecastGrpcServiceClient(channel);
-                
+
                 return result;
             });
+
+            builder.Services.AddHttpClient<IWeatherForecastRestClient, WeatherForecastRestClient>(c =>
+                c.BaseAddress = new Uri("http://localhost:4999/")
+            );
 
             var app = builder.Build();
 

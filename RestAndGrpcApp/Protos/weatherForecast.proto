@@ -1,6 +1,5 @@
 syntax = "proto3";
 
-import "Protos/annotations.proto";
 import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/wrappers.proto";
@@ -8,24 +7,16 @@ import "google/protobuf/wrappers.proto";
 option csharp_namespace = "RestAndGrpcApp.Protos";
 
 service WeatherForecastGrpcService {
-  rpc GetWeatherForecasts(google.protobuf.Empty) returns (WeatherForecasts) {
-    option (google.api.http) = {
-	  get: "/Grpc/WeatherForecast"
-	};
-  };
+  rpc GetWeatherForecasts(google.protobuf.Empty) returns (GrpcWeatherForecasts);
 
-  rpc GetWeatherForecastsByQty(WeatherForecastRequest) returns (WeatherForecasts) {
-    option (google.api.http) = {
-	  get: "/Grpc/WeatherForecast/{qty}"
-	};
-  };
+  rpc GetWeatherForecastsByQty(WeatherForecastRequest) returns (GrpcWeatherForecasts);
 }
 
-message WeatherForecasts {
-  repeated WeatherForecast forecasts = 1;
+message GrpcWeatherForecasts {
+  repeated GrpcWeatherForecast forecasts = 1;
 }
 
-message WeatherForecast {
+message GrpcWeatherForecast {
 	google.protobuf.Timestamp date = 1;
 	int32 temperatureC = 2;
 	int32 temperatureF = 3;

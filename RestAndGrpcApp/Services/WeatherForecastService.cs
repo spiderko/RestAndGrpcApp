@@ -1,8 +1,10 @@
 ﻿using Google.Protobuf.WellKnownTypes;
 using RestAndGrpcApp.Protos;
+using RestAndGrpcApp.Shared.Models;
 
 namespace RestAndGrpcApp.Server.Services
 {
+
     /// <summary>
     /// WeatherForecastService
     /// </summary>
@@ -17,9 +19,18 @@ namespace RestAndGrpcApp.Server.Services
         /// Get method requesting 5 forecasts
         /// </summary>
         /// <returns>WeatherForecasts</returns>
-        public WeatherForecasts Get()
+        public WeatherForecasts GetRest()
         {
-            return Get(5);
+            return GetRest(5);
+        }
+
+        /// <summary>
+        /// Get method requesting 5 forecasts
+        /// </summary>
+        /// <returns>GrpcWeatherForecasts</returns>
+        public GrpcWeatherForecasts GetGrpc()
+        {
+            return GetGrpc(5);
         }
 
         /// <summary>
@@ -27,20 +38,39 @@ namespace RestAndGrpcApp.Server.Services
         /// </summary>
         /// <param name="qty">The number of forecasts requested</param>
         /// <returns>WeatherForecasts</returns>
-        public WeatherForecasts Get(int qty)
+        public WeatherForecasts GetRest(int qty)
         {
             WeatherForecasts weatherForecasts = new();
 
             for (int i = 1; i <= qty; i++)
             {
-                weatherForecasts.Forecasts.Add(GetWeatherForecast(Timestamp.FromDateTime(DateTime.UtcNow)));
+                weatherForecasts.Forecasts.Add(GetWeatherForecast(DateTime.UtcNow));
             }
-
-
             return weatherForecasts;
         }
 
-        private static WeatherForecast GetWeatherForecast(Timestamp date)
+        public GrpcWeatherForecasts GetGrpc(int qty)
+        {
+            GrpcWeatherForecasts weatherForecasts = new();
+
+            for (int i = 1; i <= qty; i++)
+            {
+                weatherForecasts.Forecasts.Add(GetWeatherForecast(DateTime.UtcNow.ToTimestamp()));
+            }
+            return weatherForecasts;
+        }
+
+        private static WeatherForecast GetWeatherForecast(DateTime date)
+        {
+            return new()
+            {
+                Date = date,
+                TemperatureC = Random.Shared.Next(-20, 55),
+                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
+            };
+        }
+
+        private static GrpcWeatherForecast GetWeatherForecast(Timestamp date)
         {
             return new()
             {

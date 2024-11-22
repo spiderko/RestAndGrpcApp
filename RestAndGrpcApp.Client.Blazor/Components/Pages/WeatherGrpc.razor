@@ -1,0 +1,54 @@
+﻿@page "/weather-grpc"
+@using Google.Protobuf.Collections
+@using Google.Protobuf.WellKnownTypes
+@using RestAndGrpcApp.Protos
+@using RestAndGrpcApp.Shared.Models
+@inject WeatherForecastGrpcService.WeatherForecastGrpcServiceClient client 
+@rendermode InteractiveServer
+
+<PageTitle>Weather</PageTitle>
+
+<h1>Weather</h1>
+
+<p>This component demonstrates showing data sent by GRPC service.</p>
+
+<button @onclick="FetchData">Load Weather</button>
+
+@if (data != null)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Temp. (C)</th>
+                <th>Temp. (F)</th>
+                <th>Summary</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var forecast in data.Forecasts)
+            {
+                <tr>
+                    <td>@forecast.Date.ToDateTime().ToShortDateString()</td>
+                    <td>@forecast.TemperatureC</td>
+                    <td>@forecast.TemperatureF</td>
+                    <td>@forecast.Summary</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private GrpcWeatherForecasts data;
+
+    public async Task FetchData()
+    {
+        data = await this.client.GetWeatherForecastsAsync(new Empty());
+    }
+
+    // protected override async Task OnInitializedAsync()
+    // {
+    //     data = (await this.client.GetWeatherForecastsAsync(new Empty()));
+    // }
+}
