@@ -12,6 +12,7 @@
 <h1>Weather</h1>
 
 <p>This component demonstrates showing data sent by REST service.</p>
+<p>@ApiResult</p>
 
 <button @onclick="FetchData">Load Weather</button>
 
@@ -42,9 +43,16 @@
 
 @code {
     public WeatherForecasts? data;
+    string ApiResult = string.Empty;
 
     public async Task FetchData()
     {
-        data = await this.client.GetWeatherForecastsAsync();
+        var startTime = DateTime.Now;
+        data = await this.client.GetWeatherForecastsByQtyAsync(1000);
+        if(data != null)
+        {
+            var elapsed = DateTime.Now.Subtract(startTime);
+            ApiResult = $"{data.Forecasts.Count} records returned via Rest API in {elapsed.TotalMilliseconds} ms";
+        }
     }
 }

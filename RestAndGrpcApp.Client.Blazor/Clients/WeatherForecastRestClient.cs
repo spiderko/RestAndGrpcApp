@@ -10,5 +10,10 @@ namespace RestAndGrpcApp.Client.Blazor.Clients
         {
             return await _httpClient.GetFromJsonAsync<WeatherForecasts>("Rest/WeatherForecast");
         }
+
+        public async Task<WeatherForecasts?> GetWeatherForecastsByQtyAsync(int qty)
+        {
+            return await _httpClient.GetFromJsonAsync<WeatherForecasts>($"Rest/WeatherForecast/{qty}");
+        }
     }
 }
