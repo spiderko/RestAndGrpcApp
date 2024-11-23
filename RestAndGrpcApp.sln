@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestAndGrpcApp.Client.Blazo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestAndGrpcApp.Shared", "RestAndGrpcApp.Shared\RestAndGrpcApp.Shared.csproj", "{248CFC8B-C9F8-4553-A106-A94B35FB6110}"
 EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "RestAndGrpcApp.Client.React", "RestAndGrpcApp.Client.React\RestAndGrpcApp.Client.React.esproj", "{FD0A35A1-E1D5-4A7E-9204-D53330B55FF9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,12 @@ Global
 		{248CFC8B-C9F8-4553-A106-A94B35FB6110}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{248CFC8B-C9F8-4553-A106-A94B35FB6110}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{248CFC8B-C9F8-4553-A106-A94B35FB6110}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD0A35A1-E1D5-4A7E-9204-D53330B55FF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD0A35A1-E1D5-4A7E-9204-D53330B55FF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD0A35A1-E1D5-4A7E-9204-D53330B55FF9}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{FD0A35A1-E1D5-4A7E-9204-D53330B55FF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD0A35A1-E1D5-4A7E-9204-D53330B55FF9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD0A35A1-E1D5-4A7E-9204-D53330B55FF9}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
