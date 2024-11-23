@@ -13,7 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestAndGrpcApp.Client.Blazor", "RestAndGrpcApp.Client.Blazor\RestAndGrpcApp.Client.Blazor.csproj", "{CCB413C2-50D0-4817-9474-CE61EFD6AF44}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestAndGrpcApp.Shared", "RestAndGrpcApp.Shared\RestAndGrpcApp.Shared.csproj", "{248CFC8B-C9F8-4553-A106-A94B35FB6110}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestAndGrpcApp.Shared", "RestAndGrpcApp.Shared\RestAndGrpcApp.Shared.csproj", "{248CFC8B-C9F8-4553-A106-A94B35FB6110}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

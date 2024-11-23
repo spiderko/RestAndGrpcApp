@@ -7,16 +7,12 @@
     <InvariantGlobalization>true</InvariantGlobalization>
 	<GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
-
-	<ItemGroup>
-		<None Remove="Protos\weatherForecast.proto" />
-	</ItemGroup>
   <ItemGroup>
     <PackageReference Include="Google.Api.CommonProtos" Version="2.15.0" />
-    <PackageReference Include="Google.Protobuf" Version="3.27.1" />
-    <PackageReference Include="Grpc.AspNetCore" Version="2.63.0" />
+    <PackageReference Include="Google.Protobuf" Version="3.28.3" />
+    <PackageReference Include="Grpc.AspNetCore" Version="2.67.0" />
     <PackageReference Include="Grpc.AspNetCore.Web" Version="2.66.0" />
-    <PackageReference Include="Grpc.Tools" Version="2.65.0-pre1">
+    <PackageReference Include="Grpc.Tools" Version="2.67.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
@@ -26,8 +22,5 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RestAndGrpcApp.Shared\RestAndGrpcApp.Shared.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-	<Protobuf Include="Protos\weatherForecast.proto" GrpcServices="Server" />
   </ItemGroup>
 </Project>
