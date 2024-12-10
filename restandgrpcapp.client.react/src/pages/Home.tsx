@@ -3,9 +3,10 @@ import './Home.css'
 function Home() {
 
   return (
-    <>
-          <h1>Home</h1>
-    </>
+      <div className="home">
+          <h1>Hello, world!</h1>
+          <p>Welcome to your new app.</p>
+    </div>
   )
 }
 

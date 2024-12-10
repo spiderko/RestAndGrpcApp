@@ -23,8 +23,20 @@ namespace RestAndGrpcApp
         /// <returns></returns>
         public static void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowOrigin", policy =>
+                {
+                    policy.WithOrigins("http://localhost:5173")
+                    .AllowAnyMethod()
+                   .AllowAnyHeader();
+                });
+            });
+
             services.AddRouting();
             services.AddControllers();
+
+            
 
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddGrpc();
@@ -64,6 +76,7 @@ namespace RestAndGrpcApp
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "RestAndGrpcApp v1"));
             }
 
+            app.UseCors("AllowOrigin");
             app.UseRouting();
             app.UseGrpcWeb(new GrpcWebOptions { DefaultEnabled = true });
 

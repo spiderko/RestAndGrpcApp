@@ -1,0 +1,7 @@
+.weather-forecast-main {
+    width: calc(100vw - 250px);
+}
+
+.text-red {
+    color: red;
+}

@@ -1,21 +1,34 @@
-import Sidebar from './components/Siderbar'
-import WeatherForecast_Grpc from './pages/WeatherForecast_Grpc'
-import Home from './pages/Home'
-import WeatherForecast_Rest from './pages/WeatherForecast_Rest'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import WeatherForecast_Grpc from './pages/WeatherForecast_Grpc';
+import Root from "./routes/root";
+import WeatherForecast_Rest from './pages/WeatherForecast_Rest';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import ErrorPage from './pages/ErrorPage';
+import Home from './pages/Home';
 
 function App() {
+    const router = createBrowserRouter([{
+        path: '/',
+        element: <Root />,
+        errorElement: <ErrorPage />,
+        children: [
+            {
+                path: '',
+                element: <Home />,
+            },
+            {
+              path: 'weatherforecast-rest',
+              element: <WeatherForecast_Rest />,
+            },
+            {
+              path: 'weatherforecast-grpc',
+              element: <WeatherForecast_Grpc />,
+            }
+        ]
+    }]);
 
   return (
-    <>
-      <Router>
-        <Sidebar />
-          <Routes>
-            <Route path="/home" element={<Home/>} />
-              <Route path="/WeatherForecastGrpc" element={<WeatherForecast_Grpc/>} />
-              <Route path="/WeatherForecastRest" element={<WeatherForecast_Rest />} />
-            </Routes>
-      </Router>
+      <>
+        <RouterProvider router={router} />
     </>
   )
 }

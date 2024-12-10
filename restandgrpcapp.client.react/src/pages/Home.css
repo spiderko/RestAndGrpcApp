@@ -1,0 +1,4 @@
+.home {
+    width: calc(100vw - 250px);
+    background-color: white;
+}
