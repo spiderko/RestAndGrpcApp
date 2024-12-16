@@ -1,0 +1,20 @@
+services:
+
+  dotnetapp:
+    build:
+      context: .
+      dockerfile: Dockerfile-dotnet
+    expose:
+      - "4999"
+      - "5000"
+
+  envoy:
+    build:
+      context: .
+      dockerfile: Dockerfile-envoy
+    expose:
+      - "9211"
+      - "9901"
+    ports:
+      - "9211:9211"
+      - "9901:9901"
