@@ -1,4 +1,4 @@
-﻿using System.Reflection;
+using System.Reflection;
 using Microsoft.OpenApi.Models;
 using RestAndGrpcApp.Server.Services;
 
@@ -27,7 +27,7 @@ namespace RestAndGrpcApp
             {
                 options.AddPolicy("AllowOrigin", policy =>
                 {
-                    policy.WithOrigins("http://localhost:5173")
+                    policy.WithOrigins("http://localhost:5173", "http://localhost:7299")
                     .AllowAnyMethod()
                    .AllowAnyHeader();
                 });
