@@ -1,5 +1,6 @@
 ﻿using Google.Protobuf.WellKnownTypes;
 using RestAndGrpcApp.Protos;
+using RestAndGrpcApp.Server.Controllers;
 using RestAndGrpcApp.Shared.Models;
 
 namespace RestAndGrpcApp.Server.Services
@@ -8,8 +9,10 @@ namespace RestAndGrpcApp.Server.Services
     /// <summary>
     /// WeatherForecastService
     /// </summary>
-    public class WeatherForecastService : IWeatherForecastService
+    public class WeatherForecastService(ILogger<WeatherForecastController> logger) : IWeatherForecastService
     {
+        private readonly ILogger<WeatherForecastController> _logger = logger;
+
         private static readonly string[] Summaries =
         [
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
@@ -40,6 +43,7 @@ namespace RestAndGrpcApp.Server.Services
         /// <returns>WeatherForecasts</returns>
         public WeatherForecasts GetRest(int qty)
         {
+            _logger.LogInformation($"Sending {qty} weather forecasts from REST service");
             WeatherForecasts weatherForecasts = new();
 
             for (int i = 1; i <= qty; i++)
@@ -51,6 +55,7 @@ namespace RestAndGrpcApp.Server.Services
 
         public GrpcWeatherForecasts GetGrpc(int qty)
         {
+            _logger.LogInformation($"Sending {qty} weather forecasts from GRPC service");
             GrpcWeatherForecasts weatherForecasts = new();
 
             for (int i = 1; i <= qty; i++)

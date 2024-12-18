@@ -4,6 +4,16 @@ This simple app demonstrates how to create a gRPC and REST API service in a sing
 
 ## Build and run the sample
 
+Build docker image:
+```shell
+docker build -t grpc-server . 
+```
+
+Run the docker container:
+```shell
+docker run -p 4999:4999 -p 5000:5000 --name grpc-server-container grpc-server
+```
+
 After the application runs, navigate to http://localhost:4999/swagger in your web browser to access the Swagger UI. Expand "WeatherForecast" accordion and click on "Try it out" -> "Execute" and it should return something similar like this below:
 
 ```json
