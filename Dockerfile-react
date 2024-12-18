@@ -1,0 +1,14 @@
+FROM    node:23-alpine
+
+WORKDIR /app
+
+COPY    ./restandgrpcapp.client.react/package.json .
+COPY    ./restandgrpcapp.client.react/tsconfig.json .
+
+RUN     npm install
+
+COPY   ./restandgrpcapp.client.react/. .
+
+EXPOSE  5173
+
+CMD     ["npm", "run", "dev"]

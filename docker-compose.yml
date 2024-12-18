@@ -1,0 +1,15 @@
+services:
+  grpc_server:
+    build:
+      context: .
+      dockerfile: Dockerfile-server
+    ports:
+      - "5000:5000"
+      - "4999:4999"
+
+  grpc_client-react:
+    build:
+      context: .
+      dockerfile: Dockerfile-react
+    ports:
+      - "5173:5173"

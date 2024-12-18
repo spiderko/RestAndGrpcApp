@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RestAndGrpcApp.Server", "Re
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5AE091DB-F2DA-42F6-A636-EB4A754EF73C}"
 	ProjectSection(SolutionItems) = preProject
-		Dockerfile = Dockerfile
+		docker-compose.yml = docker-compose.yml
+		Dockerfile-react = Dockerfile-react
+		Dockerfile-server = Dockerfile-server
 		LICENSE.txt = LICENSE.txt
 		README.md = README.md
 	EndProjectSection
