@@ -4,7 +4,13 @@ This simple app demonstrates how to create a gRPC and REST API service in a sing
 
 ## Build and run the sample
 
-Build docker image:
+To run the stack:
+```
+docker-compose build
+docker-compose up
+```
+
+Build grpc-server image:
 ```shell
 docker build -t grpc-server . 
 ```

@@ -1,5 +1,7 @@
 FROM    node:23-alpine
 
+RUN apk add --no-cache protoc
+
 WORKDIR /app
 
 COPY    ./restandgrpcapp.client.react/package.json .

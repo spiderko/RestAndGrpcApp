@@ -1,0 +1,20 @@
+FROM    alpine:3.15.1 AS build
+
+WORKDIR /app
+
+RUN     apk add --no-cache protoc
+
+COPY    ./RestAndGrpcApp.Shared/Protos/wrappers.proto .
+COPY    ./RestAndGrpcApp.Shared/Protos/timestamp.proto .
+COPY    ./RestAndGrpcApp.Shared/Protos/empty.proto .
+COPY    ./RestAndGrpcApp.Shared/Protos/weatherForecast.proto .
+
+# build proto descriptor
+RUN     protoc -I=. weatherForecast.proto \
+            --descriptor_set_out=weatherForecast.pb \
+            --include_imports --include_source_info \
+            --grpc-web_out=import_style=typescript,mode=grpcwebtext:.
+
+FROM    envoyproxy/envoy:v1.22.0
+
+COPY    --from=build /app/weatherForecast.pb /tmp/
