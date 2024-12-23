@@ -40,8 +40,6 @@ namespace RestAndGrpcApp.Client.Blazor
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
-
             app.UseStaticFiles();
             app.UseAntiforgery();
 
