@@ -5,3 +5,23 @@
 .text-red {
     color: red;
 }
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table th {
+    padding: 0.5rem 0.5rem;
+    text-align: start;
+}
+
+table thead {
+    border-bottom: 1pt solid black;
+    font-weight: bold;
+}
+
+table td {
+    padding: .5rem;
+    border-bottom: 1pt solid #e8e8e8;
+}

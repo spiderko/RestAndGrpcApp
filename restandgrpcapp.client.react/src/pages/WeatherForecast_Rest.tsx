@@ -23,9 +23,35 @@ function WeatherForecast_Rest() {
           <p>This component demonstrates showing data sent by REST service.</p>
           <p>{timer}</p>
           <button onClick={handleClick}>Load Weather</button>
-          {weather ? weather.map((item: any) => <p>{item.summary}</p>) : null}
+          {weather ? CreateTable(weather) : null}
     </div>
   )
 }
 
 export default WeatherForecast_Rest;
+
+
+export function CreateTable(weather: any) {
+    return (
+        <div>
+            <table>
+                <thead>
+                <tr className="table-header">
+                    <th>Date</th>
+                    <th>Temp. (C)</th>
+                    <th>Temp. (F)</th>
+                    <th>Summary</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {weather.map((item: any) => <tr>
+                        <td>{new Date(item.date).toLocaleDateString('en-UK')}</td>
+                        <td>{item.temperatureC}</td>
+                        <td>{item.temperatureF}</td>
+                        <td>{item.summary}</td>
+                    </tr>)}
+                </tbody>
+            </table>
+        </div>
+    )
+}
