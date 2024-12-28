@@ -1,3 +1,4 @@
+FROM envoyproxy/envoy:dev-f1228663ff631ea95ef7d464de6efa898fbd430a
 FROM    alpine:3.15.1 AS build
 
 WORKDIR /app

@@ -1,4 +1,15 @@
 services:
+  evoy_gateway:
+    build:
+      context: .
+      dockerfile: Dockerfile-envoy
+    environment:
+      - ASPNETCORE_HTTP_PORTS=9902
+      - ASPNETCORE_GRPC_PORTS=10000
+    ports:
+      - "9902:9902"
+      - "10000:10000"
+
   grpc_server:
     build:
       context: .
