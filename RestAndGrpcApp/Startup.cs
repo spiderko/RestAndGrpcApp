@@ -27,7 +27,7 @@ namespace RestAndGrpcApp
             {
                 options.AddPolicy("AllowOrigin", policy =>
                 {
-                    policy.WithOrigins("http://localhost:5173", "http://localhost:7299")
+                    policy.WithOrigins("http://localhost:5173", "http://localhost:7299", "http://localhost:8080")
                     .AllowAnyMethod()
                    .AllowAnyHeader();
                 });
@@ -86,6 +86,7 @@ namespace RestAndGrpcApp
                 // Communication with gRPC endpoints must be made through a gRPC client.
                 // To learn how to create a client, visit: https://go.microsoft.com/fwlink/?linkid=2086909
                 endpoints.MapGrpcService<WeatherForecastGrpcServiceImpl>();
+                endpoints.MapGrpcService<EchoServiceImpl>();
             });
         }
     }

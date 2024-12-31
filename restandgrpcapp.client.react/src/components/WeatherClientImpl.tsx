@@ -2,7 +2,7 @@ import { WeatherForecastGrpcServiceClient } from '../../../RestAndGrpcApp.Shared
 import { GrpcWeatherForecast, WeatherForecastRequest } from '../../../RestAndGrpcApp.Shared/Protos/weatherForecast_pb';
 
 const weatherClient = async(qty: number) => {
-    const envoyUrl = "http://localhost:8000";
+    const envoyUrl = "http://localhost:8080";
     const client = new WeatherForecastGrpcServiceClient(envoyUrl);
     const request = new WeatherForecastRequest();
     request.setQty(qty);

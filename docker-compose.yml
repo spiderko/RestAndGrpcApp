@@ -1,40 +1,37 @@
 services:
-  evoy_gateway:
+  envoy_gateway:
+    image: envoyproxy/envoy-dev:e4955aed5694f9935d674419dbb364e744f697b4
+    volumes:
+      - ./envoy.yaml:/etc/envoy/envoy.yaml
+    ports:
+      - "9900:9900"
+      - "8080:8080"
+
+  grpc_server:
     build:
       context: .
-      dockerfile: Dockerfile-envoy
+      dockerfile: Dockerfile-server
     environment:
-      - ASPNETCORE_HTTP_PORTS=9902
-      - ASPNETCORE_GRPC_PORTS=10000
+      - ASPNETCORE_HTTP_PORTS=4999
+      - ASPNETCORE_GRPC_PORTS=5000
     ports:
-      - "9902:9902"
-      - "10000:10000"
+      - "5000:5000"
+      - "4999:4999"
 
-  # grpc_server:
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile-server
-  #   environment:
-  #     - ASPNETCORE_HTTP_PORTS=4999
-  #     - ASPNETCORE_GRPC_PORTS=5000
-  #   ports:
-  #     - "5000:5000"
-  #     - "4999:4999"
-
-  # grpc_client-react:
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile-react
-  #   environment:
-  #     - ASPNETCORE_HTTP_PORTS=5173
-  #   ports:
-  #     - "5173:5173"
+  grpc_client-react:
+    build:
+      context: .
+      dockerfile: Dockerfile-react
+    environment:
+      - ASPNETCORE_HTTP_PORTS=5173
+    ports:
+      - "5173:5173"
  
-  # grpc_client-blazor:
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile-blazor
-  #   environment:
-  #     - ASPNETCORE_HTTP_PORTS=7299
-  #   ports:
-  #     - "7299:7299"
+  grpc_client-blazor:
+    build:
+      context: .
+      dockerfile: Dockerfile-blazor
+    environment:
+      - ASPNETCORE_HTTP_PORTS=7299
+    ports:
+      - "7299:7299"

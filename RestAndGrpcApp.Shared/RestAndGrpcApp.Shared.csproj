@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Protos\echo.proto" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Google.Protobuf" Version="3.28.3" />
     <PackageReference Include="Grpc.Core" Version="2.46.6" />
     <PackageReference Include="Grpc.Tools" Version="2.67.0">
@@ -16,6 +20,9 @@
   </ItemGroup>
 
 	<ItemGroup>
+		<Protobuf Include="Protos\echo.proto">
+		  <GrpcServices>Both</GrpcServices>
+		</Protobuf>
 		<Protobuf Include="Protos\weatherForecast.proto" GrpcServices="Both" />
 	</ItemGroup>
 

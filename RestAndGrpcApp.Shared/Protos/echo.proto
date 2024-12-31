@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option csharp_namespace = "RestAndGrpcApp.Protos";
+
+service EchoService {
+  rpc Echo(EchoRequest) returns (EchoResponse);
+}
+
+message EchoRequest {
+	string message = 1;
+}
+
+message EchoResponse {
+	string message = 1;
+}
