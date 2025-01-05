@@ -67,21 +67,42 @@ namespace RestAndGrpcApp.Server.Services
 
         private static WeatherForecast GetWeatherForecast(DateTime date)
         {
+            var temperatureC = Random.Shared.Next(-20, 55);
             return new()
             {
                 Date = date,
-                TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
+                TemperatureC = temperatureC,
+                TemperatureF = 32 + (int)((temperatureC / 0.5556)),
+                Summary = GetSummary(temperatureC)
             };
         }
 
         private static GrpcWeatherForecast GetWeatherForecast(Timestamp date)
         {
+            var temperatureC = Random.Shared.Next(-20, 55);
             return new()
             {
                 Date = date,
-                TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
+                TemperatureC = temperatureC,
+                TemperatureF = 32 + (int)((temperatureC / 0.5556)),
+                Summary = GetSummary(temperatureC)
+            };
+        }
+
+        private static string GetSummary(int temperatureC) 
+        {
+            return temperatureC switch
+            {
+                < -10 => Summaries[0],
+                < 0 => Summaries[1],
+                < 10 => Summaries[2],
+                < 20 => Summaries[3],
+                < 25 => Summaries[4],
+                < 30 => Summaries[5],
+                < 35 => Summaries[6],
+                < 40 => Summaries[7],
+                < 50 => Summaries[8],
+                _ => Summaries[9],
             };
         }
     }
