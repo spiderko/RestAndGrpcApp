@@ -8,7 +8,7 @@
 // versions:
 // 	protoc-gen-grpc-web v1.5.0
 // 	protoc              v5.29.1
-// source: RestAndGrpcApp.Shared/Protos/weatherForecast.proto
+// source: weatherForecast.proto
 
 
 /* eslint-disable */
@@ -17,7 +17,7 @@
 
 import * as grpcWeb from 'grpc-web';
 
-import * as RestAndGrpcApp_Shared_Protos_weatherForecast_pb from '../../RestAndGrpcApp.Shared/Protos/weatherForecast_pb'; // proto import: "RestAndGrpcApp.Shared/Protos/weatherForecast.proto"
+import * as weatherForecast_pb from './weatherForecast_pb'; // proto import: "weatherForecast.proto"
 import * as google_protobuf_empty_pb from 'google-protobuf/google/protobuf/empty_pb'; // proto import: "google/protobuf/empty.proto"
 
 
@@ -44,28 +44,28 @@ export class WeatherForecastGrpcServiceClient {
     '/WeatherForecastGrpcService/GetWeatherForecasts',
     grpcWeb.MethodType.UNARY,
     google_protobuf_empty_pb.Empty,
-    RestAndGrpcApp_Shared_Protos_weatherForecast_pb.GrpcWeatherForecasts,
+    weatherForecast_pb.GrpcWeatherForecasts,
     (request: google_protobuf_empty_pb.Empty) => {
       return request.serializeBinary();
     },
-    RestAndGrpcApp_Shared_Protos_weatherForecast_pb.GrpcWeatherForecasts.deserializeBinary
+    weatherForecast_pb.GrpcWeatherForecasts.deserializeBinary
   );
 
   getWeatherForecasts(
     request: google_protobuf_empty_pb.Empty,
-    metadata?: grpcWeb.Metadata | null): Promise<RestAndGrpcApp_Shared_Protos_weatherForecast_pb.GrpcWeatherForecasts>;
+    metadata?: grpcWeb.Metadata | null): Promise<weatherForecast_pb.GrpcWeatherForecasts>;
 
   getWeatherForecasts(
     request: google_protobuf_empty_pb.Empty,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: RestAndGrpcApp_Shared_Protos_weatherForecast_pb.GrpcWeatherForecasts) => void): grpcWeb.ClientReadableStream<RestAndGrpcApp_Shared_Protos_weatherForecast_pb.GrpcWeatherForecasts>;
+               response: weatherForecast_pb.GrpcWeatherForecasts) => void): grpcWeb.ClientReadableStream<weatherForecast_pb.GrpcWeatherForecasts>;
 
   getWeatherForecasts(
     request: google_protobuf_empty_pb.Empty,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: RestAndGrpcApp_Shared_Protos_weatherForecast_pb.GrpcWeatherForecasts) => void) {
+               response: weatherForecast_pb.GrpcWeatherForecasts) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
@@ -86,29 +86,29 @@ export class WeatherForecastGrpcServiceClient {
   methodDescriptorGetWeatherForecastsByQty = new grpcWeb.MethodDescriptor(
     '/WeatherForecastGrpcService/GetWeatherForecastsByQty',
     grpcWeb.MethodType.UNARY,
-    RestAndGrpcApp_Shared_Protos_weatherForecast_pb.WeatherForecastRequest,
-    RestAndGrpcApp_Shared_Protos_weatherForecast_pb.GrpcWeatherForecasts,
-    (request: RestAndGrpcApp_Shared_Protos_weatherForecast_pb.WeatherForecastRequest) => {
+    weatherForecast_pb.WeatherForecastRequest,
+    weatherForecast_pb.GrpcWeatherForecasts,
+    (request: weatherForecast_pb.WeatherForecastRequest) => {
       return request.serializeBinary();
     },
-    RestAndGrpcApp_Shared_Protos_weatherForecast_pb.GrpcWeatherForecasts.deserializeBinary
+    weatherForecast_pb.GrpcWeatherForecasts.deserializeBinary
   );
 
   getWeatherForecastsByQty(
-    request: RestAndGrpcApp_Shared_Protos_weatherForecast_pb.WeatherForecastRequest,
-    metadata?: grpcWeb.Metadata | null): Promise<RestAndGrpcApp_Shared_Protos_weatherForecast_pb.GrpcWeatherForecasts>;
+    request: weatherForecast_pb.WeatherForecastRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<weatherForecast_pb.GrpcWeatherForecasts>;
 
   getWeatherForecastsByQty(
-    request: RestAndGrpcApp_Shared_Protos_weatherForecast_pb.WeatherForecastRequest,
+    request: weatherForecast_pb.WeatherForecastRequest,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: RestAndGrpcApp_Shared_Protos_weatherForecast_pb.GrpcWeatherForecasts) => void): grpcWeb.ClientReadableStream<RestAndGrpcApp_Shared_Protos_weatherForecast_pb.GrpcWeatherForecasts>;
+               response: weatherForecast_pb.GrpcWeatherForecasts) => void): grpcWeb.ClientReadableStream<weatherForecast_pb.GrpcWeatherForecasts>;
 
   getWeatherForecastsByQty(
-    request: RestAndGrpcApp_Shared_Protos_weatherForecast_pb.WeatherForecastRequest,
+    request: weatherForecast_pb.WeatherForecastRequest,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: RestAndGrpcApp_Shared_Protos_weatherForecast_pb.GrpcWeatherForecasts) => void) {
+               response: weatherForecast_pb.GrpcWeatherForecasts) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +

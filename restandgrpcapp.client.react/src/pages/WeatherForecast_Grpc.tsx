@@ -1,6 +1,18 @@
 import './WeatherForecast_Grpc.css'
+import { WeatherForecastGrpcServiceClient } from '../../protos/WeatherForecastServiceClientPb';
+import { WeatherForecastRequest } from '../../protos/weatherForecast_pb';
 
 function WeatherForecast_Grpc() {
+    const client = new WeatherForecastGrpcServiceClient('http://localhost:5000');
+    const request = new WeatherForecastRequest();
+    request.setQty(5);
+    client.getWeatherForecasts(request, {}, (err, response) => {
+        if (err) {
+            console.error(err);
+            return;
+        }
+        console.log(response.toObject());
+    });
 
   return (
       <div className="weather-forecast-main">

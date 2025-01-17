@@ -8,7 +8,7 @@
 // versions:
 // 	protoc-gen-grpc-web v1.5.0
 // 	protoc              v5.29.1
-// source: RestAndGrpcApp.Shared/Protos/echo.proto
+// source: echo.proto
 
 
 /* eslint-disable */
@@ -17,7 +17,7 @@
 
 import * as grpcWeb from 'grpc-web';
 
-import * as RestAndGrpcApp_Shared_Protos_echo_pb from '../../RestAndGrpcApp.Shared/Protos/echo_pb'; // proto import: "RestAndGrpcApp.Shared/Protos/echo.proto"
+import * as echo_pb from './echo_pb'; // proto import: "echo.proto"
 
 
 export class EchoServiceClient {
@@ -42,29 +42,29 @@ export class EchoServiceClient {
   methodDescriptorEcho = new grpcWeb.MethodDescriptor(
     '/EchoService/Echo',
     grpcWeb.MethodType.UNARY,
-    RestAndGrpcApp_Shared_Protos_echo_pb.EchoRequest,
-    RestAndGrpcApp_Shared_Protos_echo_pb.EchoResponse,
-    (request: RestAndGrpcApp_Shared_Protos_echo_pb.EchoRequest) => {
+    echo_pb.EchoRequest,
+    echo_pb.EchoResponse,
+    (request: echo_pb.EchoRequest) => {
       return request.serializeBinary();
     },
-    RestAndGrpcApp_Shared_Protos_echo_pb.EchoResponse.deserializeBinary
+    echo_pb.EchoResponse.deserializeBinary
   );
 
   echo(
-    request: RestAndGrpcApp_Shared_Protos_echo_pb.EchoRequest,
-    metadata?: grpcWeb.Metadata | null): Promise<RestAndGrpcApp_Shared_Protos_echo_pb.EchoResponse>;
+    request: echo_pb.EchoRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<echo_pb.EchoResponse>;
 
   echo(
-    request: RestAndGrpcApp_Shared_Protos_echo_pb.EchoRequest,
+    request: echo_pb.EchoRequest,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: RestAndGrpcApp_Shared_Protos_echo_pb.EchoResponse) => void): grpcWeb.ClientReadableStream<RestAndGrpcApp_Shared_Protos_echo_pb.EchoResponse>;
+               response: echo_pb.EchoResponse) => void): grpcWeb.ClientReadableStream<echo_pb.EchoResponse>;
 
   echo(
-    request: RestAndGrpcApp_Shared_Protos_echo_pb.EchoRequest,
+    request: echo_pb.EchoRequest,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: RestAndGrpcApp_Shared_Protos_echo_pb.EchoResponse) => void) {
+               response: echo_pb.EchoResponse) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
