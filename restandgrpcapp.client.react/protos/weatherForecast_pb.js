@@ -11,7 +11,8 @@
 /* eslint-disable */
 // @ts-nocheck
 
-var jspb = require('google-protobuf');
+import jspb from 'google-protobuf';
+//var jspb = require('google-protobuf');
 var goog = jspb;
 var global =
     (typeof globalThis !== 'undefined' && globalThis) ||
@@ -21,11 +22,14 @@ var global =
     (function () { return this; }).call(null) ||
     Function('return this')();
 
-var google_protobuf_empty_pb = require('google-protobuf/google/protobuf/empty_pb.js');
+import google_protobuf_empty_pb from 'google-protobuf/google/protobuf/empty_pb.js';
+//var google_protobuf_empty_pb = require('google-protobuf/google/protobuf/empty_pb.js');
 goog.object.extend(proto, google_protobuf_empty_pb);
-var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js');
+import google_protobuf_timestamp_pb from 'google-protobuf/google/protobuf/timestamp_pb.js';
+//var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js');
 goog.object.extend(proto, google_protobuf_timestamp_pb);
-var google_protobuf_wrappers_pb = require('google-protobuf/google/protobuf/wrappers_pb.js');
+import google_protobuf_wrappers_pb from 'google-protobuf/google/protobuf/wrappers_pb.js';
+//var google_protobuf_wrappers_pb = require('google-protobuf/google/protobuf/wrappers_pb.js');
 goog.object.extend(proto, google_protobuf_wrappers_pb);
 goog.exportSymbol('proto.GrpcWeatherForecast', null, global);
 goog.exportSymbol('proto.GrpcWeatherForecasts', null, global);

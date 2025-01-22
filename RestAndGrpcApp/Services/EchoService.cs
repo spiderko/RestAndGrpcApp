@@ -1,4 +1,5 @@
-﻿using RestAndGrpcApp.Protos;
+﻿using Grpc.Core;
+using RestAndGrpcApp.Protos;
 
 namespace RestAndGrpcApp.Server.Services
 {
@@ -12,9 +13,11 @@ namespace RestAndGrpcApp.Server.Services
         /// Echo method
         /// </summary>
         /// <returns></returns>
-        public string Echo(string request)
+        public override Task<EchoResponse> Echo(EchoRequest request, ServerCallContext context)
         {
-            return $"Hello from EchoService {request}";
+            var response = new EchoResponse() { Message= $"Response {request.Message}" };
+
+            return Task.FromResult(response);
         }
     }
 }

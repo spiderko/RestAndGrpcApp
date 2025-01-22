@@ -1,7 +1,10 @@
-﻿namespace RestAndGrpcApp.Server.Services
+﻿using Grpc.Core;
+using RestAndGrpcApp.Protos;
+
+namespace RestAndGrpcApp.Server.Services
 {
     public interface IEchoService
     {
-        string Echo(string request);
+        Task<EchoResponse> Echo(EchoRequest request, ServerCallContext context);
     }
 }
