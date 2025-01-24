@@ -1,1 +1,1 @@
-protoc -I=../RestAndGrpcApp.Shared/Protos ../RestAndGrpcApp.Shared/Protos/*.proto --js_out=import_style=commonjs:./protos --grpc-web_out=import_style=typescript,mode=grpcwebtext:./protos
+npx protoc --ts_out protos/ --ts_opt long_type_string --proto_path ../RestAndGrpcApp.Shared/Protos ../RestAndGrpcApp.Shared/Protos/echo.proto 
