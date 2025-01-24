@@ -3,7 +3,7 @@ import type { EchoRequest } from '../../protos/echo';
 import { EchoServiceClient } from '../../protos/echo.client';
 import { GrpcWebFetchTransport } from "@protobuf-ts/grpcweb-transport";
 import type { GrpcWebOptions } from '@protobuf-ts/grpcweb-transport';
-function WeatherForecast_Grpc() {
+function Echo() {
     const EnvoyURL = "http://localhost:8000";
     const handleClick = async () => {
         console.log('Connecting to GRPC...');
@@ -28,7 +28,7 @@ function WeatherForecast_Grpc() {
 
   return (
       <div className="weather-forecast-main">
-          <h1>Weather</h1>
+          <h1>Echo</h1>
           <p>This component demonstrates showing data sent by GRPC service.</p>
           <button onClick={handleClick}>Load Weather</button>
     </div>
@@ -37,4 +37,4 @@ function WeatherForecast_Grpc() {
 
 
 
-export default WeatherForecast_Grpc;
+export default Echo;

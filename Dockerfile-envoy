@@ -1,5 +1,6 @@
-FROM envoyproxy/envoy-dev:d82453231f89cb021eb716a23805073cff1f7179
+FROM	envoyproxy/envoy:v1.31.0
 FROM    alpine:3.15.1 AS build
+COPY	envoy.yaml /etc/envoy/envoy.yaml
 
 WORKDIR /app
 
@@ -8,14 +9,14 @@ EXPOSE 9901
 
 RUN     apk add --no-cache protoc
 
-COPY    ./RestAndGrpcApp.Shared/Protos/wrappers.proto /app/google/protobuf/wrappers.proto
-COPY    ./RestAndGrpcApp.Shared/Protos/timestamp.proto /app/google/protobuf/timestamp.proto
-COPY    ./RestAndGrpcApp.Shared/Protos/empty.proto /app/google/protobuf/empty.proto
-COPY    ./RestAndGrpcApp.Shared/Protos/weatherForecast.pb /app
-COPY    ./RestAndGrpcApp.Shared/Protos/weatherForecast_pb.d.ts /app
-COPY    ./RestAndGrpcApp.Shared/Protos/WeatherForecastServiceClientPb.ts /app
-COPY    ./RestAndGrpcApp.Shared/Protos/echo_pb.d.ts /app
-COPY    ./RestAndGrpcApp.Shared/Protos/EchoServiceClientPb.ts /app
+COPY    ./RestAndGrpcApp.Shared/Protos/wrappers.proto ./google/protobuf/wrappers.proto
+COPY    ./RestAndGrpcApp.Shared/Protos/timestamp.proto ./google/protobuf/timestamp.proto
+COPY    ./RestAndGrpcApp.Shared/Protos/empty.proto ./google/protobuf/empty.proto
+COPY    ./RestAndGrpcApp.Shared/Protos/echo.proto .
+COPY    ./RestAndGrpcApp.Shared/Protos/weatherForecast.proto .
+
+RUN     protoc --include_imports --include_source_info --descriptor_set_out=echo.pb echo.proto
+RUN     protoc --include_imports --include_source_info --descriptor_set_out=weatherForecast.pb weatherForecast.proto
 
 # build proto descriptor
 WORKDIR /app
@@ -23,3 +24,4 @@ WORKDIR /app
 FROM    envoyproxy/envoy:v1.22.0
 
 COPY    --from=build /app/weatherForecast.pb /tmp/
+COPY    --from=build /app/echo.pb /tmp/
