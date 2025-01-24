@@ -9,9 +9,9 @@ EXPOSE 9901
 
 RUN     apk add --no-cache protoc
 
-COPY    ./RestAndGrpcApp.Shared/Protos/wrappers.proto ./google/protobuf/wrappers.proto
-COPY    ./RestAndGrpcApp.Shared/Protos/timestamp.proto ./google/protobuf/timestamp.proto
-COPY    ./RestAndGrpcApp.Shared/Protos/empty.proto ./google/protobuf/empty.proto
+COPY    ./Protos/wrappers.proto ./google/protobuf/wrappers.proto
+COPY    ./Protos/timestamp.proto ./google/protobuf/timestamp.proto
+COPY    ./Protos/empty.proto ./google/protobuf/empty.proto
 COPY    ./RestAndGrpcApp.Shared/Protos/echo.proto .
 COPY    ./RestAndGrpcApp.Shared/Protos/weatherForecast.proto .
 

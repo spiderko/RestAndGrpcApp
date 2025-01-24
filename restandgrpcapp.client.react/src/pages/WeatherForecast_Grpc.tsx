@@ -1,6 +1,6 @@
 import './WeatherForecast_Grpc.css';
-import type { EchoRequest } from '../../protos/echo';
-import { EchoServiceClient } from '../../protos/echo.client';
+import type { WeatherForecastRequest, GrpcWeatherForecasts } from '../../protos/weatherForecast';
+import { WeatherForecastGrpcServiceClient } from '../../protos/weatherForecast.client';
 import { GrpcWebFetchTransport } from "@protobuf-ts/grpcweb-transport";
 import type { GrpcWebOptions } from '@protobuf-ts/grpcweb-transport';
 function WeatherForecast_Grpc() {
@@ -15,13 +15,13 @@ function WeatherForecast_Grpc() {
             meta: {}
         };
         const transport = new GrpcWebFetchTransport(options);
-        const client = new EchoServiceClient(transport);
-        let request: EchoRequest = {
-            message: 'Hello from React!'
+        const client = new WeatherForecastGrpcServiceClient(transport);
+        let request: WeatherForecastRequest = {
+            qty: 100
         };
 
-        let {response }= client.echo(request, options);
-/*        let response: EchoResponse = await call.response;*/
+        let call = client.getWeatherForecastsByQty(request, options);
+        let response: GrpcWeatherForecasts = await call.response;
         console.log('Getting response...');
         console.log(response);
     };

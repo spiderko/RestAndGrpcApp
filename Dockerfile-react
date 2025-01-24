@@ -6,6 +6,8 @@ WORKDIR /app
 
 COPY    ./restandgrpcapp.client.react/package.json .
 COPY    ./restandgrpcapp.client.react/tsconfig.json .
+COPY    ./restandgrpcapp.client.react/protos/echo.ts .
+COPY    ./restandgrpcapp.client.react/protos/weatherForecast.ts .
 
 RUN     npm install
 
