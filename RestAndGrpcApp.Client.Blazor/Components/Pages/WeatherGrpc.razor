@@ -20,6 +20,7 @@
     <table class="table">
         <thead>
             <tr>
+                <th>Id</th>
                 <th>Date</th>
                 <th>Temp. (C)</th>
                 <th>Temp. (F)</th>
@@ -30,6 +31,7 @@
             @foreach (var forecast in data.Forecasts)
             {
                 <tr>
+                    <td>@forecast.Id</td>
                     <td>@forecast.Date.ToDateTime().ToShortDateString()</td>
                     <td>@forecast.TemperatureC</td>
                     <td>@forecast.TemperatureF</td>

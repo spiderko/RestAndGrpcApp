@@ -16,4 +16,9 @@
   <ItemGroup>
     <ProjectReference Include="..\RestAndGrpcApp.Shared\RestAndGrpcApp.Shared.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="..\RestAndGrpcApp.Client.React\src\pages\Table.tsx">
+      <Link>Table.tsx</Link>
+    </TypeScriptCompile>
+  </ItemGroup>
 </Project>

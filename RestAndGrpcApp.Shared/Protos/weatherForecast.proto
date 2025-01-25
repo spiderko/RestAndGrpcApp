@@ -17,10 +17,11 @@ message GrpcWeatherForecasts {
 }
 
 message GrpcWeatherForecast {
-	google.protobuf.Timestamp date = 1;
-	int32 temperatureC = 2;
-	int32 temperatureF = 3;
-	google.protobuf.StringValue summary = 4;
+	int32 id = 1;
+	google.protobuf.Timestamp date = 2;
+	int32 temperatureC = 3;
+	int32 temperatureF = 4;
+	google.protobuf.StringValue summary = 5;
 }
 
 message WeatherForecastRequest {

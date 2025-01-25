@@ -17,20 +17,20 @@ services:
       - "5000:5000"
       - "4999:4999"
 
-  grpc_client-react:
-    build:
-      context: .
-      dockerfile: Dockerfile-react
-    environment:
-      - ASPNETCORE_HTTP_PORTS=5173
-    ports:
-      - "5173:5173"
- 
-  # grpc_client-blazor:
+  # grpc_client-react:
   #   build:
   #     context: .
-  #     dockerfile: Dockerfile-blazor
+  #     dockerfile: Dockerfile-react
   #   environment:
-  #     - ASPNETCORE_HTTP_PORTS=7299
+  #     - ASPNETCORE_HTTP_PORTS=5173
   #   ports:
-  #     - "7299:7299"
+  #     - "5173:5173"
+ 
+  grpc_client-blazor:
+    build:
+      context: .
+      dockerfile: Dockerfile-blazor
+    environment:
+      - ASPNETCORE_HTTP_PORTS=7299
+    ports:
+      - "7299:7299"

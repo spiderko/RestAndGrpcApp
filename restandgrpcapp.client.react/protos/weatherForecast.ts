@@ -28,19 +28,23 @@ export interface GrpcWeatherForecasts {
  */
 export interface GrpcWeatherForecast {
     /**
-     * @generated from protobuf field: google.protobuf.Timestamp date = 1;
+     * @generated from protobuf field: int32 id = 1;
+     */
+    id: number;
+    /**
+     * @generated from protobuf field: google.protobuf.Timestamp date = 2;
      */
     date?: Timestamp;
     /**
-     * @generated from protobuf field: int32 temperatureC = 2;
+     * @generated from protobuf field: int32 temperatureC = 3;
      */
     temperatureC: number;
     /**
-     * @generated from protobuf field: int32 temperatureF = 3;
+     * @generated from protobuf field: int32 temperatureF = 4;
      */
     temperatureF: number;
     /**
-     * @generated from protobuf field: google.protobuf.StringValue summary = 4;
+     * @generated from protobuf field: google.protobuf.StringValue summary = 5;
      */
     summary?: StringValue;
 }
@@ -104,14 +108,16 @@ export const GrpcWeatherForecasts = new GrpcWeatherForecasts$Type();
 class GrpcWeatherForecast$Type extends MessageType<GrpcWeatherForecast> {
     constructor() {
         super("GrpcWeatherForecast", [
-            { no: 1, name: "date", kind: "message", T: () => Timestamp },
-            { no: 2, name: "temperatureC", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
-            { no: 3, name: "temperatureF", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
-            { no: 4, name: "summary", kind: "message", T: () => StringValue }
+            { no: 1, name: "id", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 2, name: "date", kind: "message", T: () => Timestamp },
+            { no: 3, name: "temperatureC", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 4, name: "temperatureF", kind: "scalar", T: 5 /*ScalarType.INT32*/ },
+            { no: 5, name: "summary", kind: "message", T: () => StringValue }
         ]);
     }
     create(value?: PartialMessage<GrpcWeatherForecast>): GrpcWeatherForecast {
         const message = globalThis.Object.create((this.messagePrototype!));
+        message.id = 0;
         message.temperatureC = 0;
         message.temperatureF = 0;
         if (value !== undefined)
@@ -123,16 +129,19 @@ class GrpcWeatherForecast$Type extends MessageType<GrpcWeatherForecast> {
         while (reader.pos < end) {
             let [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
-                case /* google.protobuf.Timestamp date */ 1:
+                case /* int32 id */ 1:
+                    message.id = reader.int32();
+                    break;
+                case /* google.protobuf.Timestamp date */ 2:
                     message.date = Timestamp.internalBinaryRead(reader, reader.uint32(), options, message.date);
                     break;
-                case /* int32 temperatureC */ 2:
+                case /* int32 temperatureC */ 3:
                     message.temperatureC = reader.int32();
                     break;
-                case /* int32 temperatureF */ 3:
+                case /* int32 temperatureF */ 4:
                     message.temperatureF = reader.int32();
                     break;
-                case /* google.protobuf.StringValue summary */ 4:
+                case /* google.protobuf.StringValue summary */ 5:
                     message.summary = StringValue.internalBinaryRead(reader, reader.uint32(), options, message.summary);
                     break;
                 default:
@@ -147,18 +156,21 @@ class GrpcWeatherForecast$Type extends MessageType<GrpcWeatherForecast> {
         return message;
     }
     internalBinaryWrite(message: GrpcWeatherForecast, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
-        /* google.protobuf.Timestamp date = 1; */
+        /* int32 id = 1; */
+        if (message.id !== 0)
+            writer.tag(1, WireType.Varint).int32(message.id);
+        /* google.protobuf.Timestamp date = 2; */
         if (message.date)
-            Timestamp.internalBinaryWrite(message.date, writer.tag(1, WireType.LengthDelimited).fork(), options).join();
-        /* int32 temperatureC = 2; */
+            Timestamp.internalBinaryWrite(message.date, writer.tag(2, WireType.LengthDelimited).fork(), options).join();
+        /* int32 temperatureC = 3; */
         if (message.temperatureC !== 0)
-            writer.tag(2, WireType.Varint).int32(message.temperatureC);
-        /* int32 temperatureF = 3; */
+            writer.tag(3, WireType.Varint).int32(message.temperatureC);
+        /* int32 temperatureF = 4; */
         if (message.temperatureF !== 0)
-            writer.tag(3, WireType.Varint).int32(message.temperatureF);
-        /* google.protobuf.StringValue summary = 4; */
+            writer.tag(4, WireType.Varint).int32(message.temperatureF);
+        /* google.protobuf.StringValue summary = 5; */
         if (message.summary)
-            StringValue.internalBinaryWrite(message.summary, writer.tag(4, WireType.LengthDelimited).fork(), options).join();
+            StringValue.internalBinaryWrite(message.summary, writer.tag(5, WireType.LengthDelimited).fork(), options).join();
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
