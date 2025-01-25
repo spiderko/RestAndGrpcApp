@@ -5,13 +5,14 @@ using RestAndGrpcApp.Shared.Models;
 
 namespace RestAndGrpcApp.Server.Services
 {
-
     /// <summary>
     /// WeatherForecastService
     /// </summary>
     public class WeatherForecastService(ILogger<WeatherForecastController> logger) : IWeatherForecastService
     {
         private readonly ILogger<WeatherForecastController> _logger = logger;
+        private int _grpcId = 1;
+        private int _restId = 1;
 
         private static readonly string[] Summaries =
         [
@@ -45,10 +46,12 @@ namespace RestAndGrpcApp.Server.Services
         {
             _logger.LogInformation($"Sending {qty} weather forecasts from REST service");
             WeatherForecasts weatherForecasts = new();
+            _restId = 1;
 
             for (int i = 1; i <= qty; i++)
             {
                 weatherForecasts.Forecasts.Add(GetWeatherForecast(DateTime.UtcNow));
+                _restId++;
             }
             return weatherForecasts;
         }
@@ -57,19 +60,22 @@ namespace RestAndGrpcApp.Server.Services
         {
             _logger.LogInformation($"Sending {qty} weather forecasts from GRPC service");
             GrpcWeatherForecasts weatherForecasts = new();
+            _grpcId = 1;
 
             for (int i = 1; i <= qty; i++)
             {
                 weatherForecasts.Forecasts.Add(GetWeatherForecast(DateTime.UtcNow.ToTimestamp()));
+                _grpcId++;
             }
             return weatherForecasts;
         }
 
-        private static WeatherForecast GetWeatherForecast(DateTime date)
+        private WeatherForecast GetWeatherForecast(DateTime date)
         {
             var temperatureC = Random.Shared.Next(-20, 55);
             return new()
             {
+                Id = _restId,
                 Date = date,
                 TemperatureC = temperatureC,
                 TemperatureF = 32 + (int)((temperatureC / 0.5556)),
@@ -77,11 +83,12 @@ namespace RestAndGrpcApp.Server.Services
             };
         }
 
-        private static GrpcWeatherForecast GetWeatherForecast(Timestamp date)
+        private GrpcWeatherForecast GetWeatherForecast(Timestamp date)
         {
             var temperatureC = Random.Shared.Next(-20, 55);
             return new()
             {
+                Id = _grpcId,
                 Date = date,
                 TemperatureC = temperatureC,
                 TemperatureF = 32 + (int)((temperatureC / 0.5556)),
