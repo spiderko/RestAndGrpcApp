@@ -1,0 +1,14 @@
+syntax "proto3";
+
+service Engine {
+  rpc createJob(JobCreateRequest) returns (JobCreateResponse);
+}
+
+message JobCreateRequest {
+  int32 id = 1;
+}
+
+message JobCreateResponse {
+  bool isSuccess = 1;
+}
+
