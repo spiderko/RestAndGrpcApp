@@ -1,0 +1,5 @@
+- Add server streaming grpc call
+- Add ability to change qty of requested data
+- Unify how UI looks across React/Blazor
+- Add project demonstrating service to service communication in GRPC and Rest
+- Update Readme file
