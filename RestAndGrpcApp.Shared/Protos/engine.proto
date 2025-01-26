@@ -1,14 +1,19 @@
 syntax = "proto3";
 
+option csharp_namespace = "RestAndGrpcApp.Protos";
+
 service Engine {
-  rpc createJob(JobCreateRequest) returns (JobCreateResponse);
+  rpc CreateJob(JobCreateRequest) returns (stream JobCreateResponse);
 }
 
 message JobCreateRequest {
   int32 id = 1;
+  string jobTitle = 2;
 }
 
 message JobCreateResponse {
-  bool isSuccess = 1;
+  bool isFinished = 1;
+  string message = 2;
+  int32 progress = 3;
 }
 
