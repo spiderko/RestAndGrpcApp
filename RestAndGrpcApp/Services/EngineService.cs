@@ -2,7 +2,7 @@ using Grpc.Core;
 using RestAndGrpcApp.Protos;
 
 namespace RestAndGrpcApp.Server.Services {
-  public class EngineServiceImpl : EngineService.EngineBase {
+  public class EngineServiceImpl : EngineService.EngineServiceBase {
 
   }
 }
