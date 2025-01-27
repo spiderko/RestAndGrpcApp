@@ -13,7 +13,6 @@ function WeatherForecast_Rest() {
         axios.get(url)
             .then(data => {
                 setWeather(data.data.forecasts);
-                console.log(weather);
 
                 const endTime = Date.now();
                 setTimer(`1000 records returned via Rest API in ${endTime - startTime} ms`);

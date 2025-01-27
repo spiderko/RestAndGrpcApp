@@ -22,9 +22,14 @@ function Sidebar() {
               </li>
               <li className="nav-text">
                 <Link to="/WeatherForecast-Rest">
-                  <FaBars /><span> Weather REST</span>
+                  <FaBars /><span>Weather REST</span>
                 </Link>
-              </li>
+                </li>
+                <li className="nav-text">
+                  <Link to="/Engine">
+                    <FaBars /><span>Engine</span>
+                  </Link>
+                </li>
             </ul>
               </nav>
           </div>

@@ -2,7 +2,6 @@ import './WeatherForecast_Grpc.css';
 import type { WeatherForecastRequest, GrpcWeatherForecasts } from '../../protos/weatherForecast';
 import { WeatherForecastGrpcServiceClient } from '../../protos/weatherForecast.client';
 import { GrpcWebFetchTransport } from "@protobuf-ts/grpcweb-transport";
-import type { GrpcWeatherForecast } from '../../protos/weatherForecast';
 import type { GrpcWebOptions } from '@protobuf-ts/grpcweb-transport';
 import { TableGrpc } from './TableGrpc';
 import { useState } from 'react';

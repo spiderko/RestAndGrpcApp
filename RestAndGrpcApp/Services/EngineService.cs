@@ -1,4 +1,3 @@
-using Google.Api;
 using Grpc.Core;
 using RestAndGrpcApp.Protos;
 

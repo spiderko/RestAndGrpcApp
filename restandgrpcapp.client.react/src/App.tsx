@@ -4,6 +4,7 @@ import WeatherForecast_Rest from './pages/WeatherForecast_Rest';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import ErrorPage from './pages/ErrorPage';
 import Home from './pages/Home';
+import Engine from './pages/Engine';
 
 function App() {
     const router = createBrowserRouter([{
@@ -22,6 +23,10 @@ function App() {
             {
               path: 'weatherforecast-grpc',
               element: <WeatherForecast_Grpc />,
+            },
+            {
+                path: 'engine',
+                element: <Engine />,
             }
         ]
     }]);
