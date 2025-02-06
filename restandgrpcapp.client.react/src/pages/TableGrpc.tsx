@@ -1,6 +1,11 @@
 import type { GrpcWeatherForecast } from '../../protos/weatherForecast';
 
 export function TableGrpc(weather: GrpcWeatherForecast[]) {
+
+    const ToDate = (seconds: number | undefined) => {
+        return new Date(seconds ? seconds * 1000 : 0).toLocaleDateString('en-GB');
+    }
+
     return (
         <div>
             <table>
@@ -14,7 +19,7 @@ export function TableGrpc(weather: GrpcWeatherForecast[]) {
                 </thead>
                 <tbody>
                     {weather.map((item: GrpcWeatherForecast) => <tr key={item.id}>
-                        <td>{item.date?.nanos}</td>
+                        <td>{ToDate(item.date?.seconds)}</td>
                         <td>{item.temperatureC}</td>
                         <td>{item.temperatureF}</td>
                         <td>{item.summary?.value}</td>

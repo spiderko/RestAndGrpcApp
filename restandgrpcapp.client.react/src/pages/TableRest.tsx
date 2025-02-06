@@ -1,4 +1,20 @@
-export function TableRest(weather: any[]) {
+type WeatherForecast = {
+    id: number;
+    date: string;
+    temperatureC: number;
+    temperatureF: number;
+    summary: string;
+}
+
+
+
+
+export function TableRest(weather: WeatherForecast[]) {
+
+    const ToDate = (date: string) => {
+        return new Date(date).toLocaleDateString('en-GB');
+    }
+
     return (
         <div>
             <table>
@@ -11,8 +27,8 @@ export function TableRest(weather: any[]) {
                     </tr>
                 </thead>
                 <tbody>
-                    {weather.map((item: any) => <tr key={item.id}>
-                        <td>{item.date}</td>
+                    {weather.map((item: WeatherForecast) => <tr key={item.id}>
+                        <td>{ToDate(item.date)}</td>
                         <td>{item.temperatureC}</td>
                         <td>{item.temperatureF}</td>
                         <td>{item.summary}</td>

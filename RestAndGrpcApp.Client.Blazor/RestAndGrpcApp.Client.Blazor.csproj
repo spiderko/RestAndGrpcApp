@@ -15,4 +15,10 @@
     <ProjectReference Include="..\RestAndGrpcApp.Shared\RestAndGrpcApp.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="Components\Pages\Engine.razor">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+  </ItemGroup>
+
 </Project>

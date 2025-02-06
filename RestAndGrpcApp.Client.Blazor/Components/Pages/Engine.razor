@@ -1,0 +1,58 @@
+﻿@page "/engine"
+@using Google.Protobuf.Collections
+@using Google.Protobuf.WellKnownTypes
+@using RestAndGrpcApp.Protos
+@using RestAndGrpcApp.Shared.Models
+@inject RestAndGrpcApp.Protos.Engine.EngineClient client 
+@rendermode InteractiveServer
+
+<PageTitle>Engine</PageTitle>
+
+<h1>Engine</h1>
+
+<p>This component demonstrates fetching data from the server with server grpc streaming.</p>
+<p>@ApiResult</p>
+
+<button @onclick="FetchData">Start</button>
+
+@if (data == null)
+{
+    <p>Loading...</p>
+} else
+{
+    <p>@data</p>
+}
+
+@code {
+    private string data;
+    string ApiResult = string.Empty;
+    private CancellationTokenSource? cts;
+
+    public async Task FetchData()
+    {
+        cts = new CancellationTokenSource();
+        var request = new JobCreateRequest() { Id = 1, JobTitle = "asdfasdf" };
+        using var call = this.client.CreateJob(request, cancellationToken: cts.Token);
+         = client.StartCounter(new CounterRequest() { Start = currentCount }, cancellationToken: cts.Token);
+
+        Console.WriteLine("Fetching Data...");
+        
+        var stream =  this.client.CreateJob(request);
+        CancellationToken token = new CancellationToken();
+
+        Console.WriteLine("Connected...");
+        while (await stream.ResponseStream.MoveNext(token))
+        {
+            try
+            {
+                data = stream.ResponseStream.Current.Message;
+                Console.WriteLine("Job create response: " + stream.ResponseStream.Current.Message);
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Error");
+                throw;
+            }
+        }
+    }
+}

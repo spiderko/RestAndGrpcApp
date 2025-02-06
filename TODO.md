@@ -1,4 +1,6 @@
 - Add server streaming grpc call - DONE
+- Fix Blazor - DONE
+- Add server streaming call to Blazor - WIP
 - Add ability to change qty of requested data
 - Unify how UI looks across React/Blazor
 - Add project demonstrating service to service communication in GRPC and Rest
